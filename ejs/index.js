@@ -15,12 +15,32 @@ app.listen(port, () => {
     console.log(`Listening on port ${port}`);
   });
   
-  if(day >= 1 && day <= 5){
-    app.get("/", (req, res) => {
-        res.send("<h1>Hey! It's a weekday, it's time to work hard!</h1>");
-      });
-  } else {
-    app.get("/", (req, res) => {
-        res.send("<h1>Hey! It's the weekend, it's time to have fun!</h1>");
+//   if(day >= 1 && day <= 5){
+//     app.get("/", (req, res) => {
+//         res.send("<h1>Hey! It's a weekday, it's time to work hard!</h1>");
+//       });
+//   } else {
+//     app.get("/", (req, res) => {
+//         res.send("<h1>Hey! It's the weekend, it's time to have fun!</h1>");
+//     });
+//   }
+
+app.get("/", (req,res) => {
+    const dateToday = new Date(); 
+    const day = dateToday.getDay(); 
+
+    let type = "a weekday";
+    let advice = "it's time to work hard"; 
+
+    if (day === 0 || day === 6) {
+        type = "a weekend";
+        advice = "time to have fun"; 
+    }
+
+    res.render("index.ejs", {
+        dayType : type,
+        advice : advice, 
     });
-  }
+
+
+})
