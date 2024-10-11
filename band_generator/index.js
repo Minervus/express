@@ -48,6 +48,10 @@ app.listen(port, () => {
   console.log(`Listening on port ${port}`);
 });
 
+function flash() {
+  $(`form`).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100)
+}
+
 const adj = [
   "abandoned",
   "able",
